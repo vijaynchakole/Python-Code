@@ -1,22 +1,49 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Feb 16 15:35:57 2020
 
-def sub(no1,no2):
+@author: hp
+"""
 
-     return(no1-no2)
-
-
-def Decorators(OriginalFunction):
-    def Updator(a,b):
-        if(a<b):
-            a,b = b,a
-        return OriginalFunction(a,b)
-
-    return Updator
+def substraction(a, b):
+    return (a - b)
 
 
-newsub = Decorators(sub)
+def decorator(originalFunction):
+    def updator(a, b):    
+        if (a < b) :        
+            a, b = b, a        
+        return originalFunction(a, b)
+    return updator 
 
-print("Substraction of 10 and 7 is ", newsub(10,7))
 
-print("Substraction of 7 and 7 is ", newsub(7,10))
+newsubstract = decorator(substraction)
+
+print("Substraction of 10 and 7 is ", newsubstract(10, 7))
 
 
+print("Substraction of 7 and 10 is ", newsubstract(7, 10))
+
+
+###############################################################################
+
+
+# addiction and multiplication,  each number multiply by 10 before addition
+
+def add(a, b):
+    return(a + b)
+    
+    
+
+def decorator(originalFunction):
+    def updator(a, b):
+        a, b = (a * 10), (b * 10)
+        return originalFunction(a, b)
+    return updator
+
+
+newadd = decorator(add)
+
+print("addition of 5 and 4 ", newadd(5, 4))
+
+    
